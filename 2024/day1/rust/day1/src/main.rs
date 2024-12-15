@@ -32,14 +32,14 @@ fn part2(input: &str) -> usize {
     let (mut keys, mut value_counts): (HashSet<usize>, HashMap<usize, usize>) =
         (HashSet::new(), HashMap::new());
 
-    input.lines().for_each(|line| {
+    for line in input.lines() {
         let (i, j) = line.split_once("   ").unwrap();
         let i: usize = i.parse().unwrap();
         let j: usize = j.parse().unwrap();
 
         keys.insert(i);
         value_counts.entry(j).and_modify(|v| *v += 1).or_insert(1);
-    });
+    }
 
     let mut result = 0;
     for key in keys {
